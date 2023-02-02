@@ -25,10 +25,19 @@ public class ChessMatch {
         board.placePiece(piece, new ChessPosition(column, row).toPosition()); // Operação de colocar peça, passando a posição para as coordenadas de xadrez.
     }
 
-    private void initialSetup(){
-        placeNewPiece('b', 6, new Rook(board, Color.WHITE));  //Instanciamos no tabuleiro, uma nova peça (torre) que passa como argumento o tabuleiro, uma cor enumerada como branca, em uma nova posição de linha 2 e colina 1.
-        placeNewPiece('e', 8, new King(board, Color.BLACK));  
-        placeNewPiece('e', 1, new King(board, Color.WHITE));  
-        
-    }
+    private void initialSetup() {
+		placeNewPiece('c', 1, new Rook(board, Color.WHITE));
+        placeNewPiece('c', 2, new Rook(board, Color.WHITE));
+        placeNewPiece('d', 2, new Rook(board, Color.WHITE));
+        placeNewPiece('e', 2, new Rook(board, Color.WHITE));
+        placeNewPiece('e', 1, new Rook(board, Color.WHITE));
+        placeNewPiece('d', 1, new King(board, Color.WHITE));
+
+        placeNewPiece('c', 7, new Rook(board, Color.BLACK));
+        placeNewPiece('c', 8, new Rook(board, Color.BLACK));
+        placeNewPiece('d', 7, new Rook(board, Color.BLACK));
+        placeNewPiece('e', 7, new Rook(board, Color.BLACK));
+        placeNewPiece('e', 8, new Rook(board, Color.BLACK));
+        placeNewPiece('d', 8, new King(board, Color.BLACK));
+	}
 }
