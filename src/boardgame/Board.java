@@ -7,7 +7,7 @@ public class Board {
 
     public Board(int rows, int columns) {
         if(rows < 1 || columns <1){
-            throw new BoardException("Erro ao criando tabuleiro: é necessário que exista 1 linha e uma coluna");
+            throw new BoardException("Erro ao criando tabuleiro: e necessario que exista 1 linha e uma coluna");
         }
         this.rows = rows;
         this.columns = columns;
@@ -24,21 +24,21 @@ public class Board {
 
     public Piece piece(int row, int column) {
         if(!positionExists(row, column)){
-            throw new BoardException("Posição não se encontra no tabuleiro");
+            throw new BoardException("Posicao nao se encontra no tabuleiro");
         }
         return pieces[row][column];
     }
 
     public Piece piece(Position position) {
         if(!positionExists(position)){
-            throw new BoardException("Posição não se encontra no tabuleiro");
+            throw new BoardException("Posicao nao se encontra no tabuleiro");
         }
         return pieces[position.getRow()][position.getColumn()];
     }
 
     public void placePiece(Piece piece, Position position){ //passado como argumento no método, peça e posição
         if(thereIsAPiece(position)){
-            throw new BoardException("Peça já está na posição " + position);
+            throw new BoardException("Peca já está na posicao " + position);
         }
         pieces[position.getRow()][position.getColumn()] = piece; // pegamos a matriz na posição dada, e atribuí a peça que informei
         piece.position = position; //Atualização de peça através da classe Piece, consigo então, acessar livremente a posição da peça
@@ -46,7 +46,7 @@ public class Board {
 
     public Piece removePiece(Position position){
         if(!positionExists(position)){
-            throw new BoardException("Posição não existe");
+            throw new BoardException("Posicao nao existe");
         }
         if(piece(position)== null){
             return null;
@@ -67,7 +67,7 @@ public class Board {
 
     public boolean thereIsAPiece(Position position){ // se a peça do tabuleiro for diferente de nulo, ela retorna verdadeiro e retona a peça para a matriz de Position
         if(!positionExists(position)){
-            throw new BoardException("Posição não se encontra no tabuleiro");
+            throw new BoardException("Posicao nao se encontra no tabuleiro");
         }
         return piece(position) != null;
     }
