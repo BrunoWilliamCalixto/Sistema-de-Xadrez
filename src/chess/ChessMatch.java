@@ -1,6 +1,9 @@
 package chess;
 
 import boardgame.Board;
+import boardgame.BoardException;
+import boardgame.Piece;
+import boardgame.Position;
 import chess.pieces.King;
 import chess.pieces.Rook;
 
@@ -21,6 +24,28 @@ public class ChessMatch {
         }
         return mat; //retorna a matriz de peças da partida de xadrez
     }
+
+    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition){
+        Position source = sourcePosition.toPosition();
+        Position target = targetPosition.toPosition(); 
+        validateSourcePosition(source); //validação de origem da peça
+        Piece capturedPiece = makeMove(source, target); //variável que será responsável por realizar o movimento da peça, que recebe o resultado de Make Move
+        return (ChessPiece)capturedPiece; //Downcasting do tipo piece, que passou a ser alocado em ChessPiece
+    }
+
+    private void validateSourcePosition(Position position){
+        if(!board.thereIsAPiece(position)){ // Se não existir uma peça nesta posição, da uma exceção
+            throw new ChessException("Não existe peça na posição de origem");
+        }
+    }
+
+    private Piece makeMove(Position source, Position targed){ // operação que recebe como argumento, a posição inicial e posição de destino
+        Piece p = board.removePiece(source); // variavel que recebe a retirada de peça da posição de origem
+        Piece capturedPiece = board.removePiece(targed); // remove a possivel peça da posição de destino;
+        board.placePiece(p, targed);
+        return capturedPiece;
+    }
+
     private void placeNewPiece(char column, int row, ChessPiece piece){
         board.placePiece(piece, new ChessPosition(column, row).toPosition()); // Operação de colocar peça, passando a posição para as coordenadas de xadrez.
     }

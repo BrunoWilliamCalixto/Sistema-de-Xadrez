@@ -44,6 +44,19 @@ public class Board {
         piece.position = position; //Atualização de peça através da classe Piece, consigo então, acessar livremente a posição da peça
     }
 
+    public Piece removePiece(Position position){
+        if(!positionExists(position)){
+            throw new BoardException("Posição não existe");
+        }
+        if(piece(position)== null){
+            return null;
+        }
+        Piece aux = piece(position); //variável de peça local para auxiliar a exclusão da peça
+        aux.position = null; //posição auxiliar que recebe um valor nulo caso a peça seja removida
+        pieces[position.getRow()][position.getColumn()] = null; // Matriz de peças que ao ser acessado pelas linhas e colunas, indica que a peça foi retirada.
+        return aux; // retorna o processamento da peça.
+    }
+
     private boolean positionExists(int row, int column){ // posição dentro do tabuleiro
        return row >= 0 && row < rows && column >= 0 && column < columns;
     }
@@ -58,4 +71,6 @@ public class Board {
         }
         return piece(position) != null;
     }
+
+    
 }
