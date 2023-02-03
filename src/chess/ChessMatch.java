@@ -25,6 +25,12 @@ public class ChessMatch {
         return mat; //retorna a matriz de peças da partida de xadrez
     }
 
+    public boolean [][] possibleMoves(ChessPosition sourcePosition){ // possiveis movimentações da peça, para que seja imprimido na interface suas possibilidades.
+        Position position = sourcePosition.toPosition();
+        validateSourcePosition(position);
+        return board.piece(position).possibleMoves();
+    }
+
     public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition){
         Position source = sourcePosition.toPosition();
         Position target = targetPosition.toPosition(); 
